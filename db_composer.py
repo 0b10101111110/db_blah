@@ -6,6 +6,8 @@ from os.path import isfile, join
 import csv
 
 
+folder_var = '/'
+
 
 from random import randint
 import datetime
@@ -321,7 +323,7 @@ class Database:
         return f_exists
 
     def upload_from_csv(self):
-      with open(f"{csv_path}\\{local_date_str}.csv", 'r') as file:
+      with open(f"{csv_path}{folder_var}{local_date_str}.csv", 'r') as file:
         csvreader = csv.reader(file)
         for row in csvreader:
           self.database.append(Operation(int(row[0]), row[2], int(row[3]), float(row[4]), int(row[5]), row[6], datetime.datetime.fromisoformat(row[1]), int(row[7])))
@@ -330,7 +332,7 @@ class Database:
       
 
     def upload_to_csv(self):
-      with open(f"{csv_path}\\{local_date_str}.csv", 'w', newline='', encoding='utf-8') as file:
+      with open(f"{csv_path}{folder_var}{local_date_str}.csv", 'w', newline='', encoding='utf-8') as file:
         csvwriter = csv.writer(file)
         for row in db.database:
           csvwriter.writerow([row.id, row.datetime, f"{row.swaptype}", row.sum, row.percent, row.profit, row.country, row.utc])
@@ -499,13 +501,21 @@ class Database:
             
 while True:
         
-  # time vars
+        
+
+
+  
+  csv_path = '.'
   local_utc = 2
+
+
+
+
+
   local_tz = datetime.timezone(datetime.timedelta(hours = local_utc))
   local_date = datetime.datetime.now(local_tz).date()
   local_date_str = local_date.strftime("%d_%m_%y")
 
-  csv_path = '.'
 
   db = Database()
   if db.check_csv() == False:
