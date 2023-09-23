@@ -405,10 +405,8 @@ class Database:
     def fill_with_rand(self):
         
         self.full_sum = randint(5000000, 10000000)
-        print("self.full_sum = ", self.full_sum)
 
         self.amount_of_operations = round(80 * self.full_sum / 10000000)
-        print("Amount of operations = ", self.amount_of_operations)
 
         self.lower_number = 20000
         self.higher_number = 2000000
@@ -432,7 +430,6 @@ class Database:
         self.two_zero = self.amount_of_operations - self.three_zero - self.zero_zero
 
         self.stayed_sum = self.full_sum - (self.amount_of_operations * self.lower_number)
-        print("self.stayed_sum = ", self.stayed_sum)
         
         dt = None
 
